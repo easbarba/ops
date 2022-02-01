@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "centos/8"
+  config.vm.box = "almalinux/8"
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
@@ -12,19 +12,19 @@ Vagrant.configure(2) do |config|
 
   # Web 1.
   config.vm.define "web1" do |app|
-    app.vm.hostname = "ror_web1.test"
+    app.vm.hostname = "ror-web1.test"
     app.vm.network :private_network, ip: "192.168.60.4"
   end
 
   # Web 2.
   config.vm.define "web2" do |app|
-    app.vm.hostname = "ror_web2.test"
+    app.vm.hostname = "ror-web2.test"
     app.vm.network :private_network, ip: "192.168.60.5"
   end
 
   # Database.
   config.vm.define "db" do |db|
-    db.vm.hostname = "ror_db.test"
+    db.vm.hostname = "ror-db.test"
     db.vm.network :private_network, ip: "192.168.60.6"
   end
 end
