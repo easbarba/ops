@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local
+  tasks:
+    - name : Install unzip package
+      package: name=unzip state=present update_cache=true
+    - debug:
+        var: whoami.stdout
