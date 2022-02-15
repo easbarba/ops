@@ -1,0 +1,66 @@
+- name: Create a new Droplet
+  community.digitalocean.digital_ocean_droplet:
+    state: present
+    oauth_token: "{{ lookup('ansible.builtin.env', 'DO_API_TOKEN') }}"
+    name: mydroplet
+    size: s-1vcpu-1gb
+    region: sfo3
+    image: ubuntu-20-04-x64
+    wait_timeout: 500
+    ssh_keys: [ .... ]
+  register: my_droplet
+
+- name: Show Droplet info
+  ansible.builtin.debug:
+    msg: |
+      Droplet ID is {{ my_droplet.data.droplet.id }}
+      First Public IPv4 is {{ (my_droplet.data.droplet.networks.v4 | selectattr('type', 'equalto', 'public')).0.ip_address | default('<none>', true) }}
+      First Private IPv4 is {{ (my_droplet.data.droplet.networks.v4 | selectattr('type', 'equalto', 'private')).0.ip_address | default('<none>', true) }}
+
+- name: Create a new Droplet (and assign to Project "test")
+  community.digitalocean.digital_ocean_droplet:
+    state: present
+    oauth_token: "{{ lookup('ansible.builtin.env', 'DO_API_TOKEN') }}"
+    name: mydroplet
+    size: s-1vcpu-1gb
+    region: sfo3
+    image: ubuntu-20-04-x64
+    wait_timeout: 500
+    ssh_keys: [ .... ]
+    project: test
+  register: my_droplet
+
+- name: Ensure a Droplet is present
+  community.digitalocean.digital_ocean_droplet:
+    state: present
+    oauth_token: "{{ lookup('ansible.builtin.env', 'DO_API_TOKEN') }}"
+    id: 123
+    name: mydroplet
+    size: s-1vcpu-1gb
+    region: sfo3
+    image: ubuntu-20-04-x64
+    wait_timeout: 500
+
+- name: Ensure a Droplet is present and has firewall rules applied
+  community.digitalocean.digital_ocean_droplet:
+    state: present
+    oauth_token: "{{ lookup('ansible.builtin.env', 'DO_API_TOKEN') }}"
+    id: 123
+    name: mydroplet
+    size: s-1vcpu-1gb
+    region: sfo3
+    image: ubuntu-20-04-x64
+    firewall: ['myfirewall', 'anotherfirewall']
+    wait_timeout: 500
+
+- name: Ensure a Droplet is present with SSH keys installed
+  community.digitalocean.digital_ocean_droplet:
+    state: present
+    oauth_token: "{{ lookup('ansible.builtin.env', 'DO_API_TOKEN') }}"
+    id: 123
+    name: mydroplet
+    size: s-1vcpu-1gb
+    region: sfo3
+    ssh_keys: ['1534404', '1784768']
+    image: ubuntu-20-04-x64
+    wait_timeout: 500
