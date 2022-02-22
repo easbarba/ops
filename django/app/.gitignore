@@ -10,3 +10,10 @@ htmlcov
 
 # django
 __pycache__
+
+# venv
+bin
+include
+lib
+lib64
+share
