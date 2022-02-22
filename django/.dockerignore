@@ -1,0 +1,10 @@
+# django artifacts
+app/base/polls/__pycache__
+
+# venv
+app/bin
+app/include
+app/lib
+app/lib64
+app/share
+app/.gitignore

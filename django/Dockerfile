@@ -15,7 +15,14 @@ RUN apt-get update -qy && apt-get install -qy $BUILD_PACKAGES --no-install-recom
 # PYTHON'S PIP LATEST VERSION
 RUN python -m pip install pip --upgrade
 
-# PROJECT DEPENDENCIES
 WORKDIR /usr/src/app
-COPY base/requirements.txt .
+
+# PROJECT DEPENDENCIES
+COPY app/requirements.txt .
 RUN pip install -r requirements.txt
+
+# PROJECT FILES
+COPY app/.env .
+COPY app/base .
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
