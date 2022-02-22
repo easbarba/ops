@@ -1,14 +1,16 @@
+# misc
 .DS_Store
 .idea
 *.log
 tmp/
 
+# python
 *.py[cod]
 *.egg
 build
 htmlcov
 
-# django
+# django artifacts
 __pycache__
 
 # venv
