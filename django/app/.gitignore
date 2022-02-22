@@ -13,6 +13,7 @@ htmlcov
 # django artifacts
 __pycache__
 .env
+*.sqlite3
 
 # venv
 bin
