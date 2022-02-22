@@ -12,6 +12,7 @@ htmlcov
 
 # django artifacts
 __pycache__
+.env
 
 # venv
 bin
