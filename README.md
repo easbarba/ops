@@ -1,4 +1,4 @@
-# Ops studies
+# Operational Software labs.
     Get development stacks base prepared to work.
 
 ## License
